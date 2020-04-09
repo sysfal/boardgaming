@@ -1,0 +1,31 @@
+{
+  "name": "boardgaming",
+  "description": "",
+  "version": "0.0.1",
+  "private": true,
+  "license": "",
+  "author": "",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "deploy": "gcloud app deploy",
+    "start": "node app.js",
+    "lint": "eslint .",
+    "fix": "eslint --fix .",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^4.15.4",
+    "pug": "^2.0.3",
+    "socket.io": "^2.2.0",
+    "supertest": "^4.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.0.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "nodemon": "^2.0.2"
+  }
+}
