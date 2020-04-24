@@ -35,16 +35,22 @@ app.use(function (req, res, next) {
 });
 
 // let static middleware do its job
-//app.use(express.static('public'));
-app.use(express.static('app/dist/boardgaming'));
+app.use(express.static('public'));
+//app.use(express.static('app/dist/boardgaming'));
+
+/*app.get('*.*', express.static('app/dist/boardgaming', {maxAge: '1y'}));
+
+app.all('*', function (req, res) {
+  res.status(200).sendFile(`/`, {root: 'app/dist/boardgaming'});
+});*/
 
 app.get('/', (req, res) => {
   res.sendFile('index.html')
 });
-
+/*
 app.get('/admin', (req, res) => {
   res.send(JSON.stringify(users, null, 2))
-});
+});*/
 
 var sockets = [];
 var users = {};
@@ -93,6 +99,7 @@ io.on('connection', (socket) => {
 
   socket.on('chat message', (msg) => {  // listen to the event
     console.log('chat message', msg);
+    io.emit('chat message', msg);
   });
 
   socket.on('join', (msg) => {  // listen to the event
@@ -126,5 +133,6 @@ if (module === require.main) {
   server.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
     console.log('Press Ctrl+C to quit.');
+    //console.log(io.httpServer);
   });
 }
